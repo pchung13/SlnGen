@@ -108,16 +108,16 @@ namespace SlnGen.Build.Tasks.Internal
                 writer.WriteLine("EndProject");
             }
 
-            SlnHierarchy hierarchy = SlnHierarchy.FromProjects(_projects);
+            ////SlnHierarchy hierarchy = SlnHierarchy.FromProjects(_projects);
 
-            if (hierarchy.Folders.Count > 0)
-            {
-                foreach (SlnFolder folder in hierarchy.Folders)
-                {
-                    writer.WriteLine($@"Project(""{folder.TypeGuid}"") = ""{folder.Name}"", ""{folder.FullPath}"", ""{folder.Guid}""");
-                    writer.WriteLine("EndProject");
-                }
-            }
+            ////if (hierarchy.Folders.Count > 0)
+            ////{
+            ////    foreach (SlnFolder folder in hierarchy.Folders)
+            ////    {
+            ////        writer.WriteLine($@"Project(""{folder.TypeGuid}"") = ""{folder.Name}"", ""{folder.FullPath}"", ""{folder.Guid}""");
+            ////        writer.WriteLine("EndProject");
+            ////    }
+            ////}
 
             writer.WriteLine("Global");
 
@@ -145,15 +145,15 @@ namespace SlnGen.Build.Tasks.Internal
             }
             writer.WriteLine(" EndGlobalSection");
 
-            if (_projects.Count > 1)
-            {
-                writer.WriteLine(@"	GlobalSection(NestedProjects) = preSolution");
-                foreach (KeyValuePair<string, string> nestedProject in hierarchy.Hierarchy)
-                {
-                    writer.WriteLine($@"		{nestedProject.Key} = {nestedProject.Value}");
-                }
-                writer.WriteLine("	EndGlobalSection");
-            }
+            ////if (_projects.Count > 1)
+            ////{
+            ////    writer.WriteLine(@"	GlobalSection(NestedProjects) = preSolution");
+            ////    foreach (KeyValuePair<string, string> nestedProject in hierarchy.Hierarchy)
+            ////    {
+            ////        writer.WriteLine($@"		{nestedProject.Key} = {nestedProject.Value}");
+            ////    }
+            ////    writer.WriteLine("	EndGlobalSection");
+            ////}
 
             writer.WriteLine("EndGlobal");
         }
